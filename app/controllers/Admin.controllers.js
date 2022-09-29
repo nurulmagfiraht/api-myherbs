@@ -1,5 +1,5 @@
 const Admin = require('../models/');
-
+// nurul adalah admin
 const AdminController = {
     post: async(req, res) => {
         const admin = new Admin({
