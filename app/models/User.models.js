@@ -19,6 +19,12 @@ const User = mongoose.Schema({
     }
 });
 
+// user,admin
+// kalau user dia bisa crud data tapi belum valid
+// admin bisa crud valid dan bisa validasi data dari user
+
+
+
 User.pre("save", async function(next) {
     if (!this.isModified("password")) return next
     try {
