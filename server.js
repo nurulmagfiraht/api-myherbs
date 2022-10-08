@@ -3,11 +3,7 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -37,8 +33,12 @@ app.get("/", (req, res) => {
 require("./app/routes/turorial.routes")(app);
 require("./app/routes/api.route")(app);
 
+// app.use(express.static('public/img'))
+const path = require('path')
+app.use('/static', express.static(path.join(__dirname, 'public/img')))
+
 // set port, listen for requests
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

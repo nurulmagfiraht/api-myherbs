@@ -1,10 +1,15 @@
 module.exports = app => {
   const tutorials = require("../controllers/tutorial.controller.js");
+// const uploadAvatar = require('../../services/uploadAvatar.service');
+
+const uploadPicture = require('../../services/uploadAvatar.service');
 
   var router = require("express").Router();
 
   // Create a new Tutorial
   router.post("/", tutorials.create);
+  router.post("/picture/:id", uploadPicture.single('picture'), tutorials.savePicture);
+  router.post("/tutorials/picture/:id", uploadPicture.single('picture'), tutorials.savePicture);
 
   // Retrieve all Tutorials
   router.get("/", tutorials.findAll);

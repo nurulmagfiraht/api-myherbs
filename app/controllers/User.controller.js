@@ -3,10 +3,11 @@ const User = require('../models/User.models');
 const UserController = {
     post: async(req, res) => {
         const user = new User({
-            namaUser: req.body.namaUser,
+            namaLengkap: req.body.namaLengkap,
             userName: req.body.userName,
+            email: req.body.email,
             password: req.body.password,
-            role: req.body.role,
+            admin: req.body.admin,
         });
         try {
             const savedUser = await user.save();
@@ -45,8 +46,25 @@ const UserController = {
             res.json(error);
         }
     },
-}
 
+    // uploadAvatar: async (req, res) => {
+    //     try {
+    //         const updatedUser = 
+    //         await User.findByIdAndUpdate(
+    //         {_id: req.userId}, { 
+    //             $set: {
+    //             avatar: req.filename
+    //             }
+    //         });
+
+    //         await fs.unlink(`public/img/${updatedUser.avatar}`);
+
+    //         res.json(updatedUser);
+    //     } catch (error) {
+    //         res.json(error);
+    //     }  
+    // },
+}
 
 
 module.exports = UserController;

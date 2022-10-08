@@ -3,7 +3,7 @@ const User = require('../models/User.models');
 require('dotenv/config')
 const authcontroller = {
     login: async(req, res) => {
-        const user = await User.findOne({ username: req.body.username })
+        const user = await User.findOne({ userName: req.body.userName })
         if (user.validasipassword(req.body.password)) {
             const token = jwt.sign({
                 id: user._id
@@ -18,6 +18,23 @@ const authcontroller = {
         }
 
 
+    },
+
+    signUp: async (req, res) => {
+        const user = new User({
+            namaLengkap: req.body.namaLengkap,
+            userName: req.body.userName,
+            email: req.body.email,
+            password: req.body.password,
+            admin: req.body.admin,
+        });
+
+        try {
+            const savedUser = await user.save();
+            res.status(201).send({message: "registered", user: savedUser});
+        } catch (error) {
+            res.status(500).send({message: error});
+        }     
     }
 }
 
