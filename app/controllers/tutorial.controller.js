@@ -148,3 +148,20 @@ exports.findAllPublished = (req, res) => {
       });
     });
 };
+
+
+exports.savePicture = async (req, res) => {
+  try {
+    const updatedTutorial =
+      await Tutorial.findByIdAndUpdate(
+        req.params.id, {
+        $set: {
+          gambar: req.filename
+        }
+      }, { new: true });
+
+    res.status(200).json(updatedTutorial);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
