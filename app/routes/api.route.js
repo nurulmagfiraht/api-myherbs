@@ -15,6 +15,7 @@ router.delete('/:id', UserController.destroy);
 router.patch('/:id', UserController.Update);
 // router.post('/avatar', uploadAvatar.single('avatar'), UserController.uploadImage);uploadImageuploadImage
 
+router.post('/signup/', authController.signUp);
 router.post('/login/', authController.login)
 module.exports = app => {
     app.use("/api/User", router);
