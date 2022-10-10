@@ -4,7 +4,6 @@ const UserController = {
     post: async(req, res) => {
         const user = new User({
             namaLengkap: req.body.namaLengkap,
-            userName: req.body.userName,
             email: req.body.email,
             password: req.body.password,
             admin: req.body.admin,
@@ -31,7 +30,7 @@ const UserController = {
     Update: async(req, res) => {
         const updateUser = await User.findByIdAndUpdate({ _id: req.params.id }, {
             $set: {
-                userName: req.body.userName,
+                email: req.body.email,
                 password: req.body.password,
             }
         });

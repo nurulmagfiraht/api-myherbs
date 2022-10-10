@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.models');
 require('dotenv/config')
+
 const authcontroller = {
     login: async(req, res) => {
-        const user = await User.findOne({ userName: req.body.userName })
+        const user = await User.findOne({ email: req.body.email })
         if (user.validasipassword(req.body.password)) {
             const token = jwt.sign({
                 id: user._id
@@ -23,7 +24,6 @@ const authcontroller = {
     signUp: async (req, res) => {
         const user = new User({
             namaLengkap: req.body.namaLengkap,
-            userName: req.body.userName,
             email: req.body.email,
             password: req.body.password,
             admin: req.body.admin,
