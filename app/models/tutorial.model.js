@@ -1,3 +1,5 @@
+const Mongoose = require("mongoose");
+
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
@@ -7,7 +9,18 @@ module.exports = mongoose => {
       khasiat: String,
       pengolahan: String,
       deskripsi: String,
-      validate: Boolean
+      komen: [{
+        user: {
+          type : Mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+          required: true
+        },
+        komen: {
+          type : String,
+          required: true
+        }
+      }],
+      validate: Boolean,
     },
     { timestamps: true }
   );
