@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  const { nama_latin, nama_tanaman, gambar, khasiat, pengolahan, deskripsi, validate } = req.body;
+  const { nama_latin, nama_tanaman, gambar, khasiat, pengolahan, deskripsi, validate, komen } = req.body;
 
   // Create a Tutorial
   const tutorial = new Tutorial({
@@ -19,9 +19,11 @@ exports.create = (req, res) => {
     deskripsi,
     khasiat,
     pengolahan,
-    validate
-
+    validate,
+    komen
   });
+
+  // return console.log(tutorial);
 
   // Save Tutorial in the database
   tutorial

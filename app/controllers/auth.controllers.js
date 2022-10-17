@@ -15,7 +15,7 @@ const authcontroller = {
             res.json({ status: 'error', message: 'password atau username salah' })
 
         } catch (error) {
-            res.json(error)
+            res.json('from backend : ',error)
         }
 
 
